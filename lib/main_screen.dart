@@ -38,12 +38,7 @@ class MainScreen extends StatelessWidget {
                      image: DecorationImage(image: AssetImage(Assets.images.posterTest.path),fit: BoxFit.cover),
                      
                   ),
-                ),
-
-                Container(
-                  width: size.width/1.15,
-                  height: size.height/4.2,
-                  decoration: const BoxDecoration(
+                  foregroundDecoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(16),
                      ),
                      gradient: LinearGradient(
