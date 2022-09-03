@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:my_teckblog/main_screen.dart';
+import 'package:my_teckblog/view/main_screen.dart';
 import 'package:my_teckblog/my_colors.dart';
 import 'package:my_teckblog/splash_screen.dart';
 
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate, 
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: const [
