@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:my_teckblog/view/main_screen.dart';
 import 'package:my_teckblog/my_colors.dart';
-import 'package:my_teckblog/splash_screen.dart';
+import 'package:my_teckblog/view/splash_screen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
