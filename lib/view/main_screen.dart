@@ -4,6 +4,7 @@ import 'package:my_teckblog/gen/assets.gen.dart';
 import 'package:my_teckblog/my_colors.dart';
 import 'package:my_teckblog/my_strings.dart';
 import 'package:my_teckblog/view/home_screen.dart';
+import 'package:my_teckblog/view/profile_screen.dart';
 
 import '../models/fake_data.dart';
 
@@ -42,54 +43,70 @@ class MainScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            homeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              left: 0,
-              child: Container(
-                height: size.height / 10,
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: GradiantColors.bottomNavBackgroand,
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter)),
-                child: Padding(
-                  padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
-                  child: Container(
-                    height: size.height / 8,
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(18)),
-                        gradient:
-                            LinearGradient(colors: GradiantColors.bottomNav)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        IconButton(
-                            onPressed: () {},
-                            icon: ImageIcon(
-                              AssetImage(Assets.icons.home.path),
-                              color: Colors.white,
-                            )),
-                        IconButton(
-                            onPressed: () {},
-                            icon: ImageIcon(
-                              AssetImage(Assets.icons.write.path),
-                              color: Colors.white,
-                            )),
-                        IconButton(
-                            onPressed: () {},
-                            icon: ImageIcon(
-                              AssetImage(Assets.icons.user.path),
-                              color: Colors.white,
-                            )),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            Positioned.fill(child: profileScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin)),
+            BottomNavigation(size: size, bodyMargin: bodyMargin),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class BottomNavigation extends StatelessWidget {
+  const BottomNavigation({
+    Key? key,
+    required this.size,
+    required this.bodyMargin,
+  }) : super(key: key);
+
+  final Size size;
+  final double bodyMargin;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: 0,
+      right: 0,
+      left: 0,
+      child: Container(
+        height: size.height / 10,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: GradiantColors.bottomNavBackgroand,
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter)),
+        child: Padding(
+          padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
+          child: Container(
+            height: size.height / 8,
+            decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(18)),
+                gradient:
+                    LinearGradient(colors: GradiantColors.bottomNav)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                    onPressed: () {},
+                    icon: ImageIcon(
+                      AssetImage(Assets.icons.home.path),
+                      color: Colors.white,
+                    )),
+                IconButton(
+                    onPressed: () {},
+                    icon: ImageIcon(
+                      AssetImage(Assets.icons.write.path),
+                      color: Colors.white,
+                    )),
+                IconButton(
+                    onPressed: () {},
+                    icon: ImageIcon(
+                      AssetImage(Assets.icons.user.path),
+                      color: Colors.white,
+                    )),
+              ],
+            ),
+          ),
         ),
       ),
     );
