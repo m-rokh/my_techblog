@@ -43,7 +43,7 @@ class MainScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            Positioned.fill(child: profileScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin)),
+            Center(child: Positioned.fill(child: profileScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin))),
             BottomNavigation(size: size, bodyMargin: bodyMargin),
           ],
         ),
