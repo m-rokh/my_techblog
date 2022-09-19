@@ -8,8 +8,15 @@ import 'package:my_teckblog/view/profile_screen.dart';
 
 import '../models/fake_data.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  var selectedPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -17,35 +24,52 @@ class MainScreen extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     double bodyMargin = size.width / 10;
 
-    return Scaffold(
-      // appbar
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: SolidColors.scafoldBg,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Icon(
-              Icons.menu,
-              color: Colors.black,
-            ),
-            Image(
-              image: AssetImage(Assets.images.logo.path),
-              height: size.height / 13.6,
-            ),
-            const Icon(
-              Icons.search,
-              color: Colors.black,
-            )
-          ],
+    List<Widget> techMainScreenPages = [
+      homeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
+      profileScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin)
+    ];
+
+    return SafeArea(
+      child: Scaffold(
+        // appbar
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: SolidColors.scafoldBg,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              const Icon(
+                Icons.menu,
+                color: Colors.black,
+              ),
+              Image(
+                image: AssetImage(Assets.images.logo.path),
+                height: size.height / 13.6,
+              ),
+              const Icon(
+                Icons.search,
+                color: Colors.black,
+              )
+            ],
+          ),
         ),
-      ),
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Center(child: Positioned.fill(child: profileScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin))),
-            BottomNavigation(size: size, bodyMargin: bodyMargin),
-          ],
+        body: SafeArea(
+          child: Stack(
+            children: [
+              Center(
+                child: Positioned.fill(
+                    child: techMainScreenPages[selectedPageIndex]),
+              ),
+              BottomNavigation(
+                  size: size,
+                  bodyMargin: bodyMargin,
+                  changeScreen: (int valu) {
+                    setState(() {
+                      selectedPageIndex = valu;
+                    });
+                  }),
+            ],
+          ),
         ),
       ),
     );
@@ -57,10 +81,12 @@ class BottomNavigation extends StatelessWidget {
     Key? key,
     required this.size,
     required this.bodyMargin,
+    required this.changeScreen,
   }) : super(key: key);
 
   final Size size;
   final double bodyMargin;
+  final Function(int) changeScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -81,13 +107,12 @@ class BottomNavigation extends StatelessWidget {
             height: size.height / 8,
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(18)),
-                gradient:
-                    LinearGradient(colors: GradiantColors.bottomNav)),
+                gradient: LinearGradient(colors: GradiantColors.bottomNav)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () => changeScreen(0),
                     icon: ImageIcon(
                       AssetImage(Assets.icons.home.path),
                       color: Colors.white,
@@ -99,7 +124,7 @@ class BottomNavigation extends StatelessWidget {
                       color: Colors.white,
                     )),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () => changeScreen(1),
                     icon: ImageIcon(
                       AssetImage(Assets.icons.user.path),
                       color: Colors.white,

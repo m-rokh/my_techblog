@@ -7,6 +7,8 @@ import 'package:my_teckblog/view/main_screen.dart';
 import 'package:my_teckblog/my_colors.dart';
 
 class splashScreen extends StatefulWidget {
+  const splashScreen({Key? key}) : super(key: key);
+
   @override
   State<splashScreen> createState() => _splashScreenState();
 }
@@ -14,7 +16,7 @@ class splashScreen extends StatefulWidget {
 class _splashScreenState extends State<splashScreen> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 3)).then((value) {
+    Future.delayed(const Duration(seconds: 3)).then((value) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainScreen()));
     });
     super.initState();
@@ -33,10 +35,10 @@ class _splashScreenState extends State<splashScreen> {
                 image: AssetImage(Assets.images.logo.path),
                 height: 64,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 32,
               ),
-              SpinKitCircle(
+              const SpinKitCircle(
                 color: SolidColors.primeryColor,
                 size: 50.0,
               )
