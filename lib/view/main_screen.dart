@@ -5,17 +5,14 @@ import 'package:my_teckblog/view/home_screen.dart';
 import 'package:my_teckblog/view/profile_screen.dart';
 import 'package:my_teckblog/view/register_intro.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
 
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
-class _MainScreenState extends State<MainScreen> {
+class MainScreen extends StatelessWidget {
   var selectedPageIndex = 0;
+
+  MainScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -130,9 +127,9 @@ class _MainScreenState extends State<MainScreen> {
                   size: size,
                   bodyMargin: bodyMargin,
                   changeScreen: (int valu) {
-                    setState(() {
+                    
                       selectedPageIndex = valu;
-                    });
+                    
                   }),
             ],
           ),
