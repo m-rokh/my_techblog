@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_teckblog/gen/assets.gen.dart';
 import 'package:my_teckblog/component/my_colors.dart';
 import 'package:my_teckblog/view/home_screen.dart';
@@ -10,7 +11,7 @@ import 'package:my_teckblog/view/register_intro.dart';
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
 class MainScreen extends StatelessWidget {
-  var selectedPageIndex = 0;
+  Rx selectedPageIndex = 0.obs;
 
   MainScreen({Key? key}) : super(key: key);
 
@@ -115,20 +116,21 @@ class MainScreen extends StatelessWidget {
           child: Stack(
             children: [
               Positioned.fill(
-                  child: IndexedStack(
-                index: selectedPageIndex,
+                  child: Obx(() => IndexedStack(
+                index: selectedPageIndex.value,
                 children: [
                   HomeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin), // HomeScreen(0)
                   const RegisterIntro(), //RegisterIntro (1)
                   ProfileScreen(size: size,textTheme: textTheme,bodyMargin: bodyMargin), // ProfileScreen (2)
                 ],
-              )),
+              ),)
+              ),
               BottomNavigation(
                   size: size,
                   bodyMargin: bodyMargin,
                   changeScreen: (int valu) {
                     
-                      selectedPageIndex = valu;
+                      selectedPageIndex.value = valu;
                     
                   }),
             ],
