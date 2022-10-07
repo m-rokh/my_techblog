@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:my_teckblog/view/main_screen.dart';
-import 'package:my_teckblog/my_colors.dart';
-import 'package:my_teckblog/view/splash_screen.dart';
+
+import 'component/my_colors.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -95,6 +95,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        home: MainScreen());
+        home: const MainScreen());
   }
 }

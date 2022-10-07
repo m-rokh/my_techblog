@@ -1,15 +1,12 @@
-
-
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_teckblog/gen/assets.gen.dart';
 import 'package:my_teckblog/models/fake_data.dart';
-import 'package:my_teckblog/my_colors.dart';
-import 'package:my_teckblog/my_strings.dart';
+import 'package:my_teckblog/component/my_colors.dart';
+import 'package:my_teckblog/component/my_component.dart';
+import 'package:my_teckblog/component/my_strings.dart';
 
-class homeScreen extends StatelessWidget {
-  const homeScreen({
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({
     Key? key,
     required this.size,
     required this.textTheme,
@@ -29,33 +26,35 @@ class homeScreen extends StatelessWidget {
         child: Column(
           children: [
             //poster
-            homePagePoster(size: size, textTheme: textTheme),
+            HomePagePoster(size: size, textTheme: textTheme),
 
             const SizedBox(
               height: 16,
             ),
 
             // tag List
-            homePageTagList(bodyMargin: bodyMargin, textTheme: textTheme),
+            HomePageTagList(bodyMargin: bodyMargin, textTheme: textTheme),
 
             const SizedBox(
               height: 32,
             ),
 
             // see more
-            seeMoreBlog(bodyMargin: bodyMargin, textTheme: textTheme),
+            SeeMoreBlog(bodyMargin: bodyMargin, textTheme: textTheme),
 
             // blog list
-            homePageBlogList(size: size, bodyMargin: bodyMargin, textTheme: textTheme),
-            
+            HomePageBlogList(
+                size: size, bodyMargin: bodyMargin, textTheme: textTheme),
+
             const SizedBox(
               height: 32,
             ),
 
             // see more
-            seeMorePadcast(bodyMargin: bodyMargin, textTheme: textTheme),
+            SeeMorePadcast(bodyMargin: bodyMargin, textTheme: textTheme),
             // padcast List
-            homePagePadcastList(size: size, bodyMargin: bodyMargin, textTheme: textTheme),
+            HomePagePadcastList(
+                size: size, bodyMargin: bodyMargin, textTheme: textTheme),
             const SizedBox(
               height: 32,
             ),
@@ -69,8 +68,8 @@ class homeScreen extends StatelessWidget {
   }
 }
 
-class homePagePadcastList extends StatelessWidget {
-  const homePagePadcastList({
+class HomePagePadcastList extends StatelessWidget {
+  const HomePagePadcastList({
     Key? key,
     required this.size,
     required this.bodyMargin,
@@ -91,8 +90,7 @@ class homePagePadcastList extends StatelessWidget {
         itemBuilder: (context, index) {
           // blog item
           return Padding(
-            padding: EdgeInsets.only(
-                right: index == 0 ? bodyMargin : 15),
+            padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 15),
             child: Column(
               children: [
                 Padding(
@@ -105,31 +103,24 @@ class homePagePadcastList extends StatelessWidget {
                         Container(
                           decoration: BoxDecoration(
                               borderRadius:
-                                  const BorderRadius.all(
-                                      Radius.circular(16)),
+                                  const BorderRadius.all(Radius.circular(16)),
                               image: DecorationImage(
-                                  image: NetworkImage(
-                                      blogList[index].imageUrl),
+                                  image: NetworkImage(blogList[index].imageUrl),
                                   fit: BoxFit.cover)),
-                          foregroundDecoration:
-                              const BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(
-                                          Radius.circular(16)),
-                                  gradient: LinearGradient(
-                                      begin: Alignment
-                                          .bottomCenter,
-                                      end: Alignment.topCenter,
-                                      colors: GradiantColors
-                                          .blogPost)),
+                          foregroundDecoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16)),
+                              gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  colors: GradiantColors.blogPost)),
                         ),
                         Positioned(
                           bottom: 8,
                           right: 0,
                           left: 0,
                           child: Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Text(
                                 blogList[index].writer,
@@ -174,8 +165,8 @@ class homePagePadcastList extends StatelessWidget {
   }
 }
 
-class seeMorePadcast extends StatelessWidget {
-  const seeMorePadcast({
+class SeeMorePadcast extends StatelessWidget {
+  const SeeMorePadcast({
     Key? key,
     required this.bodyMargin,
     required this.textTheme,
@@ -207,8 +198,8 @@ class seeMorePadcast extends StatelessWidget {
   }
 }
 
-class homePageBlogList extends StatelessWidget {
-  const homePageBlogList({
+class HomePageBlogList extends StatelessWidget {
+  const HomePageBlogList({
     Key? key,
     required this.size,
     required this.bodyMargin,
@@ -229,8 +220,7 @@ class homePageBlogList extends StatelessWidget {
         itemBuilder: (context, index) {
           // blog item
           return Padding(
-            padding: EdgeInsets.only(
-                right: index == 0 ? bodyMargin : 15),
+            padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 15),
             child: Column(
               children: [
                 Padding(
@@ -243,31 +233,24 @@ class homePageBlogList extends StatelessWidget {
                         Container(
                           decoration: BoxDecoration(
                               borderRadius:
-                                  const BorderRadius.all(
-                                      Radius.circular(16)),
+                                  const BorderRadius.all(Radius.circular(16)),
                               image: DecorationImage(
-                                  image: NetworkImage(
-                                      blogList[index].imageUrl),
+                                  image: NetworkImage(blogList[index].imageUrl),
                                   fit: BoxFit.cover)),
-                          foregroundDecoration:
-                              const BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(
-                                          Radius.circular(16)),
-                                  gradient: LinearGradient(
-                                      begin: Alignment
-                                          .bottomCenter,
-                                      end: Alignment.topCenter,
-                                      colors: GradiantColors
-                                          .blogPost)),
+                          foregroundDecoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16)),
+                              gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  colors: GradiantColors.blogPost)),
                         ),
                         Positioned(
                           bottom: 8,
                           right: 0,
                           left: 0,
                           child: Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Text(
                                 blogList[index].writer,
@@ -312,8 +295,8 @@ class homePageBlogList extends StatelessWidget {
   }
 }
 
-class seeMoreBlog extends StatelessWidget {
-  const seeMoreBlog({
+class SeeMoreBlog extends StatelessWidget {
+  const SeeMoreBlog({
     Key? key,
     required this.bodyMargin,
     required this.textTheme,
@@ -345,8 +328,8 @@ class seeMoreBlog extends StatelessWidget {
   }
 }
 
-class homePageTagList extends StatelessWidget {
-  const homePageTagList({
+class HomePageTagList extends StatelessWidget {
+  const HomePageTagList({
     Key? key,
     required this.bodyMargin,
     required this.textTheme,
@@ -364,47 +347,16 @@ class homePageTagList extends StatelessWidget {
         itemCount: tagList.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.fromLTRB(
-                0, 8, index == 0 ? bodyMargin : 15, 8),
-            child: Container(
-                height: 60,
-                decoration: const BoxDecoration(
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(24)),
-                    gradient: LinearGradient(
-                        colors: GradiantColors.tags,
-                        begin: Alignment.centerRight,
-                        end: Alignment.centerLeft)),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.fromLTRB(16, 8, 8, 8),
-                  child: Row(
-                    children: [
-                      ImageIcon(
-                        AssetImage(
-                            Assets.icons.hashtagicon.path),
-                        color: Colors.white,
-                        size: 12,
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        tagList[index].title,
-                        style: textTheme.headline2,
-                      )
-                    ],
-                  ),
-                )),
+            padding: EdgeInsets.fromLTRB(0, 8, index == 0 ? bodyMargin : 15, 8),
+            child: MainTags(textTheme: textTheme,index: index,),
           );
         },
       ),
     );
   }
 }
-
-class homePagePoster extends StatelessWidget {
-  const homePagePoster({
+class HomePagePoster extends StatelessWidget {
+  const HomePagePoster({
     Key? key,
     required this.size,
     required this.textTheme,
@@ -425,8 +377,7 @@ class homePagePoster extends StatelessWidget {
               Radius.circular(16),
             ),
             image: DecorationImage(
-                image:
-                    AssetImage(homePagePosterMap["imageAsset"]),
+                image: AssetImage(homePagePosterMap["imageAsset"]),
                 fit: BoxFit.cover),
           ),
           foregroundDecoration: const BoxDecoration(
@@ -446,8 +397,7 @@ class homePagePoster extends StatelessWidget {
           child: Column(
             children: [
               Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
                     homePagePosterMap["writer"] +

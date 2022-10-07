@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:my_teckblog/gen/assets.gen.dart';
-import 'package:my_teckblog/my_colors.dart';
-import 'package:my_teckblog/my_strings.dart';
+import 'package:my_teckblog/component/my_colors.dart';
 import 'package:my_teckblog/view/home_screen.dart';
 import 'package:my_teckblog/view/profile_screen.dart';
-
-import '../models/fake_data.dart';
+import 'package:my_teckblog/view/register_intro.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -14,6 +11,8 @@ class MainScreen extends StatefulWidget {
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
+
+final GlobalKey<ScaffoldState> _key = GlobalKey();
 
 class _MainScreenState extends State<MainScreen> {
   var selectedPageIndex = 0;
@@ -24,19 +23,84 @@ class _MainScreenState extends State<MainScreen> {
     var size = MediaQuery.of(context).size;
     double bodyMargin = size.width / 10;
 
-    
     return SafeArea(
-      child: Scaffold(
+      child: Scaffold( 
+        key: _key,
+        //drawer
+        drawer: Drawer(
+          backgroundColor: SolidColors.scafoldBg,
+          child: Padding(
+            padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
+            child: ListView(
+              children: [
+                DrawerHeader(
+                  child: Center(
+                    child: Image.asset(
+                      Assets.images.logo.path,
+                      scale: 3,
+                    ),
+                  ),
+                ),
+                ListTile(
+                  title: Text(
+                    "پروفایل کاربری",
+                    style: textTheme.headline4,
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: SolidColors.dividerColor,
+                ),
+                ListTile(
+                  title: Text(
+                    "درباره تک بلاگ",
+                    style: textTheme.headline4,
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: SolidColors.dividerColor,
+                ),
+                ListTile(
+                  title: Text(
+                    "اشتراک گذاری تک بلاگ",
+                    style: textTheme.headline4,
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: SolidColors.dividerColor,
+                ),
+                ListTile(
+                  title: Text(
+                    "تک بلاگ در گیت هاب",
+                    style: textTheme.headline4,
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: SolidColors.dividerColor,
+                ),
+              ],
+            ),
+          ),
+        ),
         // appbar
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           elevation: 0,
           backgroundColor: SolidColors.scafoldBg,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const Icon(
-                Icons.menu,
-                color: Colors.black,
+              InkWell(
+                onTap: () {
+                  _key.currentState!.openDrawer();
+                },
+                child: const Icon(
+                  Icons.menu,
+                  color: Colors.black,
+                ),
               ),
               Image(
                 image: AssetImage(Assets.images.logo.path),
@@ -49,19 +113,19 @@ class _MainScreenState extends State<MainScreen> {
             ],
           ),
         ),
+        //body
         body: SafeArea(
           child: Stack(
             children: [
-              Center(
-                child: Positioned.fill(
-                    child: IndexedStack(
-                      index: selectedPageIndex,
-                      children: [
-                        homeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),//
-                        profileScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin)//
-                      ],
-                    )),
-              ),
+              Positioned.fill(
+                  child: IndexedStack(
+                index: selectedPageIndex,
+                children: [
+                  HomeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin), // HomeScreen(0)
+                  const RegisterIntro(), //RegisterIntro (1)
+                  ProfileScreen(size: size,textTheme: textTheme,bodyMargin: bodyMargin), // ProfileScreen (2)
+                ],
+              )),
               BottomNavigation(
                   size: size,
                   bodyMargin: bodyMargin,
@@ -120,13 +184,13 @@ class BottomNavigation extends StatelessWidget {
                       color: Colors.white,
                     )),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () => changeScreen(1),
                     icon: ImageIcon(
                       AssetImage(Assets.icons.write.path),
                       color: Colors.white,
                     )),
                 IconButton(
-                    onPressed: () => changeScreen(1),
+                    onPressed: () => changeScreen(2),
                     icon: ImageIcon(
                       AssetImage(Assets.icons.user.path),
                       color: Colors.white,
