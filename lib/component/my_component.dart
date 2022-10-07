@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:my_teckblog/gen/assets.gen.dart';
 import 'package:my_teckblog/models/fake_data.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'my_colors.dart';
 
 class TecDivider extends StatelessWidget {
@@ -22,9 +25,8 @@ class TecDivider extends StatelessWidget {
   }
 }
 
-
 class MainTags extends StatelessWidget {
-   MainTags({
+  MainTags({
     Key? key,
     required this.textTheme,
     required this.index,
@@ -36,34 +38,45 @@ class MainTags extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 60,
-        decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(24)),
-            gradient: LinearGradient(
-                colors: GradiantColors.tags,
-                begin: Alignment.centerRight,
-                end: Alignment.centerLeft)),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
-          child: Row(
-            children: [
-              ImageIcon(
-                AssetImage(Assets.icons.hashtagicon.path),
-                color: Colors.white,
-                size: 12,
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              Text(
-                tagList[index].title,
-                style: textTheme.headline2,
-              )
-            ],
-          ),
+      height: 60,
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(24)),
+          gradient: LinearGradient(
+              colors: GradiantColors.tags,
+              begin: Alignment.centerRight,
+              end: Alignment.centerLeft)),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+        child: Row(
+          children: [
+            ImageIcon(
+              AssetImage(Assets.icons.hashtagicon.path),
+              color: Colors.white,
+              size: 12,
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            Text(
+              tagList[index].title,
+              style: textTheme.headline2,
+            )
+          ],
         ),
-        );
+      ),
+    );
   }
 }
 
+myLaunchUrl(String url) async {
+  var uri = Uri.parse(url);
+  if(await canLaunchUrl(uri)){
 
+      await launchUrl(uri);
+    
+  }else{
+
+    log("could not launch ${uri.toString()}");
+  }
+
+}

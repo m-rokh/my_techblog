@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_teckblog/component/my_component.dart';
 import 'package:my_teckblog/component/my_strings.dart';
 import 'package:my_teckblog/gen/assets.gen.dart';
 import 'package:my_teckblog/component/my_colors.dart';
@@ -7,6 +8,7 @@ import 'package:my_teckblog/view/home_screen.dart';
 import 'package:my_teckblog/view/profile_screen.dart';
 import 'package:my_teckblog/view/register_intro.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
@@ -76,7 +78,9 @@ class MainScreen extends StatelessWidget {
                     "تک بلاگ در گیت هاب",
                     style: textTheme.headline4,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    myLaunchUrl(MyStrings.techBlogGithubUrl);     
+                  },
                 ),
                 const Divider(
                   color: SolidColors.dividerColor,
