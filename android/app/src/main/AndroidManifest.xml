@@ -2,7 +2,8 @@
     package="com.example.my_teckblog">
 
 
-    <!-- <uses-permission android:name="android.permission.INTERNET" -->
+
+   <uses-permission android:name="android.permission.INTERNET"/>
 
    <application
         android:label="my_teckblog"

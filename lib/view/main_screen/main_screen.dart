@@ -4,8 +4,8 @@ import 'package:my_teckblog/component/my_component.dart';
 import 'package:my_teckblog/component/my_strings.dart';
 import 'package:my_teckblog/gen/assets.gen.dart';
 import 'package:my_teckblog/component/my_colors.dart';
-import 'package:my_teckblog/view/home_screen.dart';
-import 'package:my_teckblog/view/profile_screen.dart';
+import 'package:my_teckblog/view/main_screen/home_screen.dart';
+import 'package:my_teckblog/view/main_screen/profile_screen.dart';
 import 'package:my_teckblog/view/register_intro.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -34,13 +34,12 @@ class MainScreen extends StatelessWidget {
             child: ListView(
               children: [
                 DrawerHeader(
-                  child: Center(
-                    child: Image.asset(
-                      Assets.images.logo.path,
-                      scale: 3,
-                    ),
+                    child: Center(
+                  child: Image.asset(
+                    Assets.images.logo.path,
+                    scale: 3,
                   ),
-                ),
+                )),
                 ListTile(
                   title: Text(
                     "پروفایل کاربری",
@@ -53,7 +52,7 @@ class MainScreen extends StatelessWidget {
                 ),
                 ListTile(
                   title: Text(
-                    "درباره تک بلاگ",
+                    "درباره تک‌بلاگ",
                     style: textTheme.headline4,
                   ),
                   onTap: () {},
@@ -75,7 +74,7 @@ class MainScreen extends StatelessWidget {
                 ),
                 ListTile(
                   title: Text(
-                    "تک بلاگ در گیت هاب",
+                    "تک‌بلاگ در گیت هاب",
                     style: textTheme.headline4,
                   ),
                   onTap: () {

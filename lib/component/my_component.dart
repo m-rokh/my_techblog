@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
+import 'package:my_teckblog/controller/home_screen_controller.dart';
 import 'package:my_teckblog/gen/assets.gen.dart';
 import 'package:my_teckblog/models/fake_data.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -59,7 +61,7 @@ class MainTags extends StatelessWidget {
               width: 8,
             ),
             Text(
-              tagList[index].title,
+              Get.find<HomeScreenController>().tagsList[index].title!,
               style: textTheme.headline2,
             )
           ],
