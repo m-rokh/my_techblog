@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:my_teckblog/view/article_list_screen.dart';
 import 'package:my_teckblog/view/main_screen/main_screen.dart';
+import 'package:my_teckblog/view/single.dart';
 import 'package:my_teckblog/view/splash_screen.dart';
 import 'component/my_colors.dart';
 
@@ -97,6 +98,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        home:   ArticleListScreen());
+        home:   Single());
   }
 }

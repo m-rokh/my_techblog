@@ -53,6 +53,10 @@ class $AssetsImagesGen {
   AssetGenImage get profileAvatar =>
       const AssetGenImage('assets/images/profileAvatar.png');
 
+  /// File path: assets/images/single_place_holder.jpg
+  AssetGenImage get singlePlaceHolder =>
+      const AssetGenImage('assets/images/single_place_holder.jpg');
+
   /// File path: assets/images/tcbot.svg
   SvgGenImage get tcbot => const SvgGenImage('assets/images/tcbot.svg');
 }
