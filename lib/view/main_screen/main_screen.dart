@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_teckblog/component/my_component.dart';
 import 'package:my_teckblog/component/my_strings.dart';
+import 'package:my_teckblog/controller/register_controller.dart';
 import 'package:my_teckblog/gen/assets.gen.dart';
 import 'package:my_teckblog/component/my_colors.dart';
 import 'package:my_teckblog/view/main_screen/home_screen.dart';
 import 'package:my_teckblog/view/main_screen/profile_screen.dart';
-import 'package:my_teckblog/view/register_intro.dart';
+import 'package:my_teckblog/view/register/register_intro.dart';
 import 'package:share_plus/share_plus.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
+// ignore: must_be_immutable
 class MainScreen extends StatelessWidget {
   Rx selectedPageIndex = 0.obs;
 
@@ -18,7 +20,6 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     var textTheme = Theme.of(context).textTheme;
     var size = MediaQuery.of(context).size;
     double bodyMargin = size.width / 10;
@@ -129,7 +130,7 @@ class MainScreen extends StatelessWidget {
                         size: size,
                         textTheme: textTheme,
                         bodyMargin: bodyMargin), // HomeScreen(0)
-                    const RegisterIntro(), //RegisterIntro (1)
+                    RegisterIntro(), //RegisterIntro (1)
                     ProfileScreen(
                         size: size,
                         textTheme: textTheme,
@@ -163,10 +164,11 @@ class BottomNavigation extends StatelessWidget {
   final double bodyMargin;
   final Function(int) changeScreen;
 
+
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 0,
+      bottom: 8,
       right: 0,
       left: 0,
       child: Container(
@@ -193,7 +195,10 @@ class BottomNavigation extends StatelessWidget {
                       color: Colors.white,
                     )),
                 IconButton(
-                    onPressed: () => changeScreen(1),
+                    onPressed: () {
+                      //TODO Ckeck Login Status
+                      Get.find<RegisterController>().toggleLogin();
+                    },
                     icon: ImageIcon(
                       AssetImage(Assets.icons.write.path),
                       color: Colors.white,

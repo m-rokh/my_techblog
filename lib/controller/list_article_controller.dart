@@ -4,9 +4,8 @@ import 'package:my_teckblog/models/article_model.dart';
 
 import '../services/dio_service.dart';
 
-class ArticleController extends GetxController {
+class ListArticleController extends GetxController {
   RxList<ArticleModel> articleList = RxList();
-
   RxBool loading = false.obs;
 
   @override
@@ -17,15 +16,31 @@ class ArticleController extends GetxController {
 
   getList() async {
     loading.value = true;
-    //TODO get userid from getStorage ApiConstant.getArticleList + userid
+    //TODO get userid from getStorage ApiConstant.getArticleList+userid
     var response = await DioService().getMethod(ApiConstant.getArticleList);
 
     if (response.statusCode == 200) {
       response.data.forEach((element) {
         articleList.add(ArticleModel.fromJson(element));
       });
+
       loading.value = false;
     }
   }
 
+  getArticleListWithTagsId(String id) async {
+    articleList.clear();
+    loading.value = true;
+    //TODO get userid from getStorage ApiConstant.getArticleList+userid
+    var response = await DioService().getMethod(ApiConstant.baseUrl +
+        'article/get.php?command=get_articles_with_tag_id&tag_id=$id&user_id=');
+
+    if (response.statusCode == 200) {
+      response.data.forEach((element) {
+        articleList.add(ArticleModel.fromJson(element));
+      });
+
+      loading.value = false;
+    }
+  }
 }

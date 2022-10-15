@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:my_teckblog/component/text_style.dart';
 import 'package:my_teckblog/controller/home_screen_controller.dart';
 import 'package:my_teckblog/gen/assets.gen.dart';
-import 'package:my_teckblog/models/fake_data.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'my_colors.dart';
 
@@ -29,6 +28,7 @@ class TecDivider extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class MainTags extends StatelessWidget {
   MainTags({
     Key? key,
@@ -37,6 +37,7 @@ class MainTags extends StatelessWidget {
   }) : super(key: key);
 
   final TextTheme textTheme;
+  // ignore: prefer_typing_uninitialized_variables
   var index;
 
   @override
@@ -74,21 +75,15 @@ class MainTags extends StatelessWidget {
 
 myLaunchUrl(String url) async {
   var uri = Uri.parse(url);
-  if(await canLaunchUrl(uri)){
-
-      await launchUrl(uri);
-    
-  }else{
-
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri);
+  } else {
     log("could not launch ${uri.toString()}");
   }
-
-  
-
 }
 
-class loading extends StatelessWidget {
-  const loading({
+class Loading extends StatelessWidget {
+  const Loading({
     Key? key,
   }) : super(key: key);
 
@@ -101,20 +96,23 @@ class loading extends StatelessWidget {
   }
 }
 
-
 PreferredSize appBar(String title) {
-    return PreferredSize(
-      preferredSize: const Size.fromHeight(60),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          actions: [
-           Padding(
-             padding: const EdgeInsets.only(left: 16),
-             child: Center(child: Text(title,style: appBarTextStyle,)),
-           ),
+  return PreferredSize(
+    preferredSize: const Size.fromHeight(60),
+    child: Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(left: 16),
+            child: Center(
+                child: Text(
+              title,
+              style: appBarTextStyle,
+            )),
+          ),
         ],
         leading: Padding(
           padding: const EdgeInsets.only(right: 16),
@@ -125,9 +123,10 @@ PreferredSize appBar(String title) {
               color: SolidColors.primeryColor.withAlpha(100),
               shape: BoxShape.circle,
             ),
-            child: Icon(Icons.keyboard_arrow_right_rounded),
+            child: const Icon(Icons.keyboard_arrow_right_rounded),
           ),
-        ),),
+        ),
       ),
-    );
-  }
+    ),
+  );
+}
