@@ -1,4 +1,4 @@
-import 'package:my_teckblog/component/api_constant.dart';
+import 'package:my_teckblog/constant/api_constant.dart';
 
 class ArticleModel {
    String? id;

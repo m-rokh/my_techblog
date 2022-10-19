@@ -5,15 +5,16 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_teckblog/binding.dart';
+import 'package:my_teckblog/constant/my_colors.dart';
 import 'package:my_teckblog/my_http_overrides.dart';
+import 'package:my_teckblog/view/articles/manage_article.dart';
+import 'package:my_teckblog/view/articles/single_manage_article.dart';
 import 'package:my_teckblog/view/main_screen/main_screen.dart';
-import 'package:my_teckblog/view/single.dart';
 import 'package:my_teckblog/view/splash_screen.dart';
-import 'component/my_colors.dart';
+import 'view/articles/single.dart';
 
 Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
-
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: SolidColors.statusBarColor,
       statusBarIconBrightness: Brightness.dark,
@@ -39,13 +40,21 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         getPages: [
           GetPage(
-              name: routeMainScreen,
+              name: NamedRoute.routeMainScreen,
               page: () => MainScreen(),
               binding: RegisterBinding()),
           GetPage(
-              name: routeSingleArticle,
+              name: NamedRoute.routeSingleArticle,
               page: () => Single(),
-              binding: ArticleBinding())
+              binding: ArticleBinding()),
+          GetPage(
+              name: NamedRoute.manageArticle,
+              page: () => ManageArticle(),
+              binding: ArticleManagerBinding()),
+          GetPage(
+              name: NamedRoute.singleManageArticle,
+              page: () => SingleManageArticle(),
+              binding: ArticleManagerBinding()),
         ],
         home: const SplashScreen());
   }
@@ -60,22 +69,18 @@ class MyApp extends StatelessWidget {
           filled: true,
           fillColor: Colors.white),
       elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-        textStyle: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.pressed)) {
-            return textTheme.headline1;
-          }
-
-          return textTheme.subtitle1;
-        }),
-        backgroundColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.pressed)) {
-            return SolidColors.seeMore;
-          }
-
-          return SolidColors.primeryColor;
-        }),
-      )),
+        style: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+          backgroundColor: MaterialStateProperty.resolveWith(
+            (states) {
+              if (states.contains(MaterialState.pressed)) {
+                return SolidColors.seeMore;
+              }
+              return SolidColors.primeryColor;
+            },
+          ),
+        ),
+      ),
       fontFamily: 'dana',
       brightness: Brightness.light,
       textTheme: const TextTheme(
@@ -116,5 +121,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
-const String routeMainScreen = "/MainScreen";
-const String routeSingleArticle = "/SingleArticle";
+class NamedRoute{
+static String routeMainScreen = "/MainScreen";
+static String routeSingleArticle = "/SingleArticle";
+static String manageArticle = "/ManageArticle";
+static String singleManageArticle = "/SingleManageArticle";
+
+
+}

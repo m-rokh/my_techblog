@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:my_teckblog/component/api_constant.dart';
+import 'package:my_teckblog/constant/api_constant.dart';
 import 'package:my_teckblog/models/article_model.dart';
+import 'package:my_teckblog/services/dio_service.dart';
 
-import '../services/dio_service.dart';
 
 class ListArticleController extends GetxController {
   RxList<ArticleModel> articleList = RxList();

@@ -1,13 +1,12 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:my_teckblog/component/text_style.dart';
+import 'package:my_teckblog/constant/my_colors.dart';
 import 'package:my_teckblog/controller/home_screen_controller.dart';
 import 'package:my_teckblog/gen/assets.gen.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'my_colors.dart';
 
 class TecDivider extends StatelessWidget {
   const TecDivider({
@@ -114,19 +113,59 @@ PreferredSize appBar(String title) {
             )),
           ),
         ],
-        leading: Padding(
-          padding: const EdgeInsets.only(right: 16),
-          child: Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-              color: SolidColors.primeryColor.withAlpha(100),
-              shape: BoxShape.circle,
+        leading: GestureDetector(
+          onTap: () {
+            Get.back();
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                color: SolidColors.primeryColor.withAlpha(100),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(Icons.keyboard_arrow_right_rounded),
             ),
-            child: const Icon(Icons.keyboard_arrow_right_rounded),
           ),
         ),
       ),
     ),
   );
+}
+
+class SeeMoreBlog extends StatelessWidget {
+  const SeeMoreBlog({
+    Key? key,
+    required this.bodyMargin,
+    required this.textTheme,
+    required this.title,
+  }) : super(key: key);
+
+  final double bodyMargin;
+  final TextTheme textTheme;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(right: bodyMargin, bottom: 8),
+      child: Row(
+        children: [
+          ImageIcon(
+            AssetImage(Assets.icons.bluePen.path),
+            color: SolidColors.seeMore,
+          ),
+          const SizedBox(
+            width: 8,
+          ),
+          Text(
+            title,
+            style: textTheme.headline3,
+          )
+        ],
+      ),
+    );
+  }
 }

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:my_teckblog/component/api_constant.dart';
+import 'package:my_teckblog/constant/api_constant.dart';
 import 'package:my_teckblog/models/article_model.dart';
 import 'package:my_teckblog/models/podcast_model.dart';
 import 'package:my_teckblog/models/poster_model.dart';

@@ -2,12 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
-import 'package:my_teckblog/component/my_colors.dart';
+import 'package:my_teckblog/constant/my_colors.dart';
 import 'package:my_teckblog/component/my_component.dart';
-import 'package:my_teckblog/controller/list_article_controller.dart';
-import 'package:my_teckblog/controller/single_article_controller%20copy.dart';
+import 'package:my_teckblog/controller/article/list_article_controller.dart';
+import 'package:my_teckblog/controller/article/single_article_controller%20copy.dart';
 import 'package:my_teckblog/gen/assets.gen.dart';
-import 'package:my_teckblog/view/article_list_screen.dart';
+import 'package:my_teckblog/view/articles/article_list_screen.dart';
+
  
  
 // ignore: must_be_immutable

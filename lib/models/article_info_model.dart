@@ -1,5 +1,5 @@
 
-import 'package:my_teckblog/component/api_constant.dart';
+import 'package:my_teckblog/constant/api_constant.dart';
 
 class ArticleInfoModel {
   String? id;
@@ -16,9 +16,9 @@ class ArticleInfoModel {
 
   ArticleInfoModel(
  
-  //  this.title,
-  //  this.content,
-  //  this.image,
+   this.title,
+   this.content,
+   this.image,
    
 
 

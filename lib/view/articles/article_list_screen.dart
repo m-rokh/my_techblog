@@ -2,9 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:my_teckblog/component/my_component.dart';
-import 'package:my_teckblog/controller/list_article_controller.dart';
-import 'package:my_teckblog/controller/single_article_controller%20copy.dart';
+import 'package:my_teckblog/controller/article/list_article_controller.dart';
+import 'package:my_teckblog/controller/article/single_article_controller%20copy.dart';
 import 'package:my_teckblog/main.dart';
+
 
 // ignore: must_be_immutable
 class ArticleListScreen extends StatelessWidget {
@@ -36,7 +37,7 @@ class ArticleListScreen extends StatelessWidget {
                             await singleArcticleController.getArticleInfo(
                                 listarcticleController.articleList[index].id);
 
-                            Get.toNamed(routeSingleArticle);
+                            Get.toNamed(NamedRoute.routeSingleArticle);
                           }),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -119,6 +120,8 @@ class ArticleListScreen extends StatelessWidget {
                     )
                   : const Loading(),
             ),
+
+            
           ),
         ),
       ),

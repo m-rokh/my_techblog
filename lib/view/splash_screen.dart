@@ -3,7 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:my_teckblog/gen/assets.gen.dart';
 import 'package:my_teckblog/main.dart';
-import 'package:my_teckblog/component/my_colors.dart';
+import 'package:my_teckblog/constant/my_colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 3)).then((value) {
-      Get.offAndToNamed(routeMainScreen);
+      Get.offAndToNamed(NamedRoute.routeMainScreen);
     });
     super.initState();
   }
